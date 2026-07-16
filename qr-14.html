@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>1 000 000ème visiteur</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Space+Grotesk:wght@400;700;900&family=Syne:wght@800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #09070f;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.45) 50%),
+                linear-gradient(90deg, rgba(120, 75, 162, 0.05), rgba(0, 0, 0, 0), rgba(255, 215, 0, 0.05));
+    background-size: 100% 4px, 6px 100%;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .vignette {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(5, 4, 8, 0.98) 100%);
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 5;
+    max-width: 440px;
+    width: 100%;
+    padding: 40px 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1), 0 0 50px rgba(118,75,162,0.15);
+    transform: scale(0.92);
+    opacity: 0;
+    animation: boot-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .badge {
+    font-size: 4.5rem;
+    margin-bottom: 12px;
+    display: inline-block;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    animation: trophy-bounce 3s ease-in-out infinite alternate;
+  }
+
+  .number {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-shadow: 0 0 30px rgba(255,215,0,0.6), 0 0 60px rgba(255,215,0,0.2);
+    animation: text-glow 2s ease-in-out infinite alternate;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    margin: 16px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .prize-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 18px;
+    padding: 24px;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .prize-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,215,0,0), rgba(255,215,0,0.1), rgba(255,215,0,0));
+    transform: skewX(-25deg);
+    animation: sweep 4s ease-in-out infinite;
+  }
+
+  .prize {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .nothing { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+  .cta {
+    position: relative;
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #ffe033, #ffd700, #ffa500);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255,215,0,0.35), 0 0 0 1px rgba(255,255,255,0.2) inset;
+    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: button-shimmer 2.5s infinite;
+  }
+
+  .cta:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
+
+  .shake { animation: brutal-shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+  .flash-purple { animation: neon-flash 0.4s ease-out; }
+
+  @keyframes boot-up { to { transform: scale(1); opacity: 1; } }
+  @keyframes trophy-bounce {
+    0% { transform: translateY(0) rotate(-4deg) scale(1); }
+    100% { transform: translateY(-12px) rotate(4deg) scale(1.08); }
+  }
+  @keyframes text-glow {
+    0% { text-shadow: 0 0 20px rgba(255,215,0,0.5); }
+    100% { text-shadow: 0 0 40px rgba(255,215,0,0.9), 0 0 10px rgba(255,215,0,0.5); }
+  }
+  @keyframes sweep { 0% { left: -150%; } 40%, 100% { left: 150%; } }
+  @keyframes button-shimmer { 0% { left: -100%; } 40%, 100% { left: 100%; } }
+  @keyframes brutal-shake {
+    10%, 90% { transform: translate3d(-3px, 0, 0); }
+    20%, 80% { transform: translate3d(5px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+  }
+  @keyframes neon-flash {
+    0% { background: rgba(118, 75, 162, 0.6); }
+    100% { background: #09070f; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="vignette"></div>
+  <canvas id="starfieldCanvas"></canvas>
+
+  <div class="container" id="interactionConsole">
+    <div class="badge">🏆</div>
+    <div class="number">1 000 000ème</div>
+    <h1>BRAVO ! T'es le/la visiteur(se) !</h1>
+    <div class="prize-box" id="pBox">
+      <div class="prize">Ton lot :</div>
+      <div class="nothing">Toujours rien à gagner.<br>C'était déjà le cas pour les 999 999 autres.</div>
+    </div>
+    <button class="cta" id="btn" onclick="claim()">Réclamer mon lot 🎁</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('starfieldCanvas');
+    const ctx = canvas.getContext('2d');
+    const consoleBox = document.getElementById('interactionConsole');
+    const prizeBox = document.getElementById('pBox');
+    const ctaBtn = document.getElementById('btn');
+    let audioCtx = null;
+    let particles = [];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class GoldenStar {
+      constructor(isBurst = false, x = 0, y = 0) { this.reset(isBurst, x, y); }
+      reset(isBurst, x, y) {
+        this.isBurst = isBurst;
+        this.x = isBurst ? x : Math.random() * canvas.width;
+        this.y = isBurst ? y : Math.random() * -canvas.height;
+        this.size = Math.random() * (isBurst ? 5 : 2.5) + 1;
+        this.speedY = isBurst ? (Math.random() * 8 - 3) : (Math.random() * 1.5 + 1);
+        this.speedX = isBurst ? (Math.random() * 10 - 5) : (Math.random() * 0.4 - 0.2);
+        this.color = Math.random() > 0.35 ? '#ffd700' : '#764ba2';
+        this.alpha = 1;
+        this.decay = Math.random() * 0.02 + 0.008;
+      }
+      update() {
+        this.y += this.speedY; this.x += this.speedX;
+        if (this.isBurst) { this.alpha -= this.decay; }
+        else if (this.y > canvas.height) { this.reset(false); }
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        if (Math.random() > 0.5) {
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        } else {
+          ctx.moveTo(this.x, this.y - this.size);
+          ctx.lineTo(this.x + this.size, this.y);
+          ctx.lineTo(this.x, this.y + this.size);
+          ctx.lineTo(this.x - this.size, this.y);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 40; i++) particles.push(new GoldenStar());
+
+    function render() {
+      ctx.fillStyle = 'rgba(9, 7, 15, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => { p.update(); p.draw(); return p.alpha > 0; });
+      if (particles.filter(p => !p.isBurst).length < 35) particles.push(new GoldenStar());
+      requestAnimationFrame(render);
+    }
+    render();
+
+    function playAudioTone(freq, type, duration, volume) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.start(); osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function playCelebrationFanfare() {
+      playAudioTone(261.63, 'triangle', 0.15, 0.1);
+      setTimeout(() => playAudioTone(329.63, 'triangle', 0.15, 0.1), 100);
+      setTimeout(() => playAudioTone(392.00, 'triangle', 0.15, 0.1), 200);
+      setTimeout(() => playAudioTone(523.25, 'triangle', 0.3, 0.12), 300);
+    }
+
+    function playDisappointmentBuzzer() {
+      playAudioTone(220, 'sawtooth', 0.4, 0.15);
+      setTimeout(() => playAudioTone(147, 'sawtooth', 0.5, 0.15), 100);
+    }
+
+    function triggerVibration(pattern) { if (navigator.vibrate) navigator.vibrate(pattern); }
+
+    function claim() {
+      playDisappointmentBuzzer();
+      triggerVibration([80, 50, 80]);
+      document.body.classList.add('flash-purple');
+      consoleBox.classList.add('shake');
+      prizeBox.style.borderColor = 'rgba(255, 51, 68, 0.4)';
+      setTimeout(() => {
+        document.body.classList.remove('flash-purple');
+        consoleBox.classList.remove('shake');
+        prizeBox.style.borderColor = 'rgba(255, 215, 0, 0.15)';
+      }, 500);
+      ctaBtn.textContent = '...toujours rien 💀';
+      ctaBtn.disabled = true;
+      setTimeout(() => { ctaBtn.textContent = 'Réessayer ?'; ctaBtn.disabled = false; }, 2000);
+    }
+
+    document.body.addEventListener('mousedown', (e) => {
+      for (let i = 0; i < 15; i++) particles.push(new GoldenStar(true, e.clientX, e.clientY));
+      playAudioTone(440, 'sine', 0.05, 0.03);
+      triggerVibration(10);
+    });
+
+    document.body.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        for (let i = 0; i < 15; i++) particles.push(new GoldenStar(true, e.touches[0].clientX, e.touches[0].clientY));
+      }
+      if (!audioCtx) playCelebrationFanfare();
+      triggerVibration(10);
+    }, { passive: true });
+
+    window.addEventListener('load', () => { setTimeout(() => triggerVibration([50, 30, 50]), 200); });
+  </script>
+</body>
+</html>

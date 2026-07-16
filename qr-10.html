@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bisous</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Space+Grotesk:wght@400;700;900&family=Syne:wght@800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #050508;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .vignette {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(3, 3, 5, 0.95) 100%);
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 5;
+    max-width: 480px;
+    width: 100%;
+    padding: 40px 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: boot-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  .timer {
+    font-family: 'Fira Code', monospace;
+    font-size: 6.5rem;
+    font-weight: 900;
+    color: #ff3344;
+    margin: 10px 0;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255, 51, 68, 0.4);
+    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+  }
+
+  .timer.tick-active { transform: scale(1.1); color: #ff5e6c; }
+
+  .lost {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 20px 0;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+
+  .bisous {
+    font-size: 3.5rem;
+    margin-top: 24px;
+    font-family: 'Syne', sans-serif;
+    color: #ff3377;
+    text-shadow: 0 0 20px rgba(255, 51, 119, 0.5);
+    opacity: 0;
+    transform: scale(0.5);
+    animation: pop-kiss 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.3) forwards;
+  }
+
+  .shake { animation: intense-shake 0.35s cubic-bezier(.36,.07,.19,.97) both; }
+  .flash-red { animation: screen-flash 0.3s ease-out; }
+
+  @keyframes boot-up { to { transform: scale(1); opacity: 1; } }
+  @keyframes pop-kiss { to { transform: scale(1); opacity: 1; } }
+  @keyframes screen-flash {
+    0% { background: rgba(255, 51, 68, 0.7); }
+    100% { background: #050508; }
+  }
+  @keyframes intense-shake {
+    10%, 90% { transform: translate3d(-2px, -1px, 0); }
+    20%, 80% { transform: translate3d(4px, 2px, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, -1px, 0); }
+    40%, 60% { transform: translate3d(6px, 2px, 0); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="vignette"></div>
+  <canvas id="timeCanvas"></canvas>
+
+  <div class="container" id="interactiveBox">
+    <p>Temps écoulé de ta vie :</p>
+    <div class="timer" id="t">8s</div>
+    <div class="lost">T'as perdu 8 secondes.<br>Irrécupérables.</div>
+    <p style="margin-top: 10px;">Pour ça.</p>
+    <div class="bisous" id="msg" style="display:none">😘 Bisous</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('timeCanvas');
+    const ctx = canvas.getContext('2d');
+    const box = document.getElementById('interactiveBox');
+    const timerElement = document.getElementById('t');
+    const msgElement = document.getElementById('msg');
+    let audioCtx = null;
+    let particles = [];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class SandParticle {
+      constructor() { this.reset(); this.y = Math.random() * canvas.height; }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -10;
+        this.size = Math.random() * 2 + 1;
+        this.speedY = Math.random() * 2 + 1;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() { this.y += this.speedY; if (this.y > canvas.height) this.reset(); }
+      draw() {
+        ctx.fillStyle = `rgba(255, 51, 68, ${this.alpha})`;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    for (let i = 0; i < 70; i++) particles.push(new SandParticle());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    function playAudioTick(isFinal = false) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        if (isFinal) {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+          osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+          osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2);
+          osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.4);
+          gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+          osc.start(); osc.stop(audioCtx.currentTime + 0.6);
+        } else {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
+          gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+          osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+        }
+      } catch(e) {}
+    }
+
+    function triggerVibration(pattern) {
+      if (navigator.vibrate) navigator.vibrate(pattern);
+    }
+
+    let secondsLeft = 8;
+    const interval = setInterval(() => {
+      secondsLeft--;
+      timerElement.textContent = secondsLeft + 's';
+      timerElement.classList.add('tick-active');
+      setTimeout(() => timerElement.classList.remove('tick-active'), 100);
+      playAudioTick(false);
+      triggerVibration(15);
+
+      if (secondsLeft <= 0) {
+        clearInterval(interval);
+        timerElement.textContent = '0s';
+        msgElement.style.display = 'block';
+        playAudioTick(true);
+        triggerVibration([60, 40, 150]);
+        document.body.classList.add('flash-red');
+        box.classList.add('shake');
+        setTimeout(() => {
+          document.body.classList.remove('flash-red');
+          box.classList.remove('shake');
+        }, 500);
+      }
+    }, 1000);
+
+    document.body.addEventListener('click', () => {
+      playAudioTick(false);
+      triggerVibration(10);
+      particles.forEach(p => p.speedY *= 1.8);
+      setTimeout(() => { particles.forEach(p => p.speedY = Math.random() * 2 + 1); }, 800);
+    });
+  </script>
+</body>
+</html>

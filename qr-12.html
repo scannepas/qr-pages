@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ALERTE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Space+Grotesk:wght@500;700;900&family=Syne:wght@800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #030305;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    animation: critical-flash 1.5s cubic-bezier(0.15, 0.85, 0.35, 1) 1;
+  }
+
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.05));
+    background-size: 100% 4px, 6px 100%;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .vignette {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(3, 3, 5, 0.98) 100%);
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  .console {
+    position: relative;
+    z-index: 5;
+    max-width: 440px;
+    width: 100%;
+    padding: 36px 24px;
+    background: rgba(10, 10, 14, 0.4);
+    border: 1px solid rgba(255, 51, 68, 0.15);
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: console-boot 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .warning {
+    font-size: 4.5rem;
+    margin-bottom: 12px;
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 51, 68, 0.5));
+    animation: emergency-bounce 1s ease-in-out infinite alternate;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    color: #ff3344;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+    position: relative;
+    animation: text-glitch 4s infinite step-end;
+  }
+
+  .code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #a5a5b5;
+    margin: 10px 0;
+    background: rgba(255, 51, 68, 0.04);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border-left: 3px solid #ff3344;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transform: translateX(-15px);
+    animation: slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .code:nth-of-type(1) { animation-delay: 0.3s; }
+  .code:nth-of-type(2) { animation-delay: 0.5s; }
+  .code:nth-of-type(3) { animation-delay: 0.7s; }
+
+  .divider { border: none; border-top: 1px dashed rgba(255, 51, 68, 0.2); margin: 28px 0; }
+
+  .reveal {
+    font-size: 1.15rem;
+    color: #8c8c9c;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.5s;
+  }
+
+  .punchline {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    color: #fff;
+    margin-top: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 2.1s;
+    text-shadow: 0 0 25px rgba(255,255,255,0.15);
+  }
+
+  .question {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    color: #ff3344;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 2.8s;
+  }
+
+  .shake { animation: system-shake 0.35s cubic-bezier(.36,.07,.19,.97) both; }
+  .strobe-alert { animation: quick-strobe 0.3s ease-out; }
+
+  @keyframes critical-flash {
+    0% { background: #ff3344; }
+    30% { background: #030305; }
+    50% { background: #ff3344; }
+    100% { background: #030305; }
+  }
+  @keyframes console-boot { to { transform: scale(1); opacity: 1; } }
+  @keyframes emergency-bounce {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-8px) scale(1.05); }
+  }
+  @keyframes slide-in { to { opacity: 1; transform: translateX(0); } }
+  @keyframes fade-up { to { opacity: 1; transform: translateY(0); } }
+  @keyframes system-shake {
+    10%, 90% { transform: translate3d(-3px, -2px, 0) rotate(-0.5deg); }
+    20%, 80% { transform: translate3d(4px, 3px, 0) rotate(1deg); }
+    30%, 50%, 70% { transform: translate3d(-6px, -1px, 0) rotate(-1deg); }
+    40%, 60% { transform: translate3d(6px, 2px, 0) rotate(0.5deg); }
+  }
+  @keyframes quick-strobe {
+    0% { background: rgba(255, 51, 68, 0.45); }
+    100% { background: #030305; }
+  }
+  @keyframes text-glitch {
+    0%, 95%, 100% { text-shadow: none; transform: translate(0); }
+    96% { text-shadow: -2.5px 0 #00ffff, 2.5px 0 #ff3344; transform: translate(-2px, 1px); }
+    97% { text-shadow: 2.5px -1.5px #00ffff, -2.5px 1.5px #ff3344; transform: translate(2px, -1px); }
+    98% { text-shadow: -1.5px 2px #00ffff, 1.5px -2px #ff3344; transform: translate(-1px, -2px); }
+    99% { text-shadow: 1.5px -1px #00ffff, -1.5px 1px #ff3344; transform: translate(1px, 2px); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="vignette"></div>
+  <canvas id="threatCanvas"></canvas>
+
+  <div class="console" id="displayBox">
+    <div class="warning">🦠</div>
+    <h1>VIRUS DÉTECTÉ</h1>
+    <div class="code">Scanning device... ████████ 100%</div>
+    <div class="code">Threat level: CATASTROPHIQUE</div>
+    <div class="code">Fichiers infectés: tous les tiens</div>
+    <hr class="divider">
+    <div class="reveal">...non je déconne.</div>
+    <div class="punchline">Ou pas ? 😈</div>
+    <div class="question">T'es sûr(e) ? 🤔</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('threatCanvas');
+    const ctx = canvas.getContext('2d');
+    const box = document.getElementById('displayBox');
+    let audioCtx = null;
+    let particles = [];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class MalwareSpark {
+      constructor(isBlast = false, x = 0, y = 0) { this.reset(isBlast, x, y); }
+      reset(isBlast, x, y) {
+        this.x = isBlast ? x : Math.random() * canvas.width;
+        this.y = isBlast ? y : Math.random() * canvas.height;
+        this.size = Math.random() * (isBlast ? 4.5 : 2) + 0.5;
+        this.speedX = isBlast ? (Math.random() * 12 - 6) : (Math.random() * 0.8 - 0.4);
+        this.speedY = isBlast ? (Math.random() * 12 - 6) : (Math.random() * 1.5 + 0.5);
+        this.color = isBlast ? (Math.random() > 0.4 ? '#ff3344' : '#ffffff') : 'rgba(255,51,68,0.12)';
+        this.alpha = 1;
+        this.decay = Math.random() * 0.02 + 0.01;
+      }
+      update() { this.x += this.speedX; this.y += this.speedY; this.alpha -= this.decay; }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 35; i++) particles.push(new MalwareSpark());
+
+    function update() {
+      ctx.fillStyle = 'rgba(3, 3, 5, 0.18)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => { p.update(); p.draw(); return p.alpha > 0; });
+      if (particles.filter(p => p.speedY > 0 && p.alpha > 0.15).length < 25)
+        particles.push(new MalwareSpark());
+      requestAnimationFrame(update);
+    }
+    update();
+
+    function playCyberAlertSound() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(650, audioCtx.currentTime);
+        osc.frequency.linearRampToValueAtTime(180, audioCtx.currentTime + 0.3);
+        gainNode.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.35);
+      } catch(e) {}
+    }
+
+    function triggerHaptics(pattern) { if (navigator.vibrate) navigator.vibrate(pattern); }
+
+    function triggerSystemEvent(e) {
+      let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      if (e.touches && e.touches[0]) { cx = e.touches[0].clientX; cy = e.touches[0].clientY; }
+      else if (e.clientX) { cx = e.clientX; cy = e.clientY; }
+      for (let i = 0; i < 25; i++) particles.push(new MalwareSpark(true, cx, cy));
+      box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+      document.body.classList.remove('strobe-alert'); void document.body.offsetWidth; document.body.classList.add('strobe-alert');
+      playCyberAlertSound();
+      triggerHaptics([60, 40, 80]);
+    }
+
+    document.body.addEventListener('mousedown', triggerSystemEvent);
+    document.body.addEventListener('touchstart', (e) => {
+      if (e.target.tagName !== 'A') triggerSystemEvent(e);
+    }, { passive: true });
+
+    window.addEventListener('load', () => { setTimeout(() => triggerHaptics([100, 50, 100]), 150); });
+  </script>
+</body>
+</html>

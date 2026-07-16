@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Félicitations !</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Syne:wght@800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: #0a051b;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 30%, rgba(5, 2, 15, 0.95) 100%);
+    pointer-events: none;
+    z-index: 9;
+  }
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .card {
+    position: relative;
+    z-index: 5;
+    max-width: 480px;
+    width: 100%;
+    padding: 40px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: scale(0.9);
+    opacity: 0;
+    animation: entrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  .emoji-wrapper { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+  .emoji {
+    font-size: 64px;
+    filter: drop-shadow(0 10px 15px rgba(255, 215, 0, 0.3));
+    animation: float 3s ease-in-out infinite alternate;
+    display: inline-block;
+  }
+  .emoji:nth-child(1) { animation-delay: 0s; }
+  .emoji:nth-child(2) { animation-delay: 0.3s; }
+  .emoji:nth-child(3) { animation-delay: 0.6s; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem; font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 30px rgba(255,215,0,0.35), 0 0 60px rgba(255,215,0,0.1);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    animation: glow-pulse 2s infinite alternate;
+  }
+  .prize {
+    font-size: 1.2rem; color: #e0e0e0; margin: 10px 0;
+    text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; opacity: 0.8;
+  }
+  .nothing {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: #ff3344; margin: 16px 0;
+    letter-spacing: -1.5px;
+    text-shadow: 0 0 20px rgba(255, 51, 68, 0.4);
+    animation: text-shake 3s infinite step-end;
+  }
+  p { color: #aaa; font-size: 1.1rem; margin-top: 16px; line-height: 1.5; }
+  .extra-p { margin-top: 8px; font-size: 1rem; color: #ff3377; opacity: 0.9; }
+  .btn {
+    display: inline-block;
+    margin-top: 32px; padding: 16px 36px;
+    background: #ffd700; color: #000;
+    border: none; border-radius: 40px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+  .btn:active { transform: scale(0.95); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2); }
+  @keyframes entrance { to { transform: scale(1); opacity: 1; } }
+  @keyframes float {
+    from { transform: translateY(0) rotate(-5deg); }
+    to { transform: translateY(-12px) rotate(5deg); }
+  }
+  @keyframes glow-pulse {
+    from { text-shadow: 0 0 20px rgba(255,215,0,0.2); }
+    to { text-shadow: 0 0 40px rgba(255,215,0,0.5), 0 0 10px rgba(255,255,255,0.3); }
+  }
+  @keyframes text-shake {
+    0%, 95%, 100% { transform: translate(0); text-shadow: 0 0 20px rgba(255, 51, 68, 0.4); }
+    96% { transform: translate(-3px, 2px); text-shadow: -3px 0 #00ffff, 3px 0 #ff3344; }
+    97% { transform: translate(3px, -1px); text-shadow: 3px -2px #00ffff, -3px 2px #ff3344; }
+    98% { transform: translate(-2px, -3px); text-shadow: -2px 3px #00ffff, 2px -3px #ff3344; }
+    99% { transform: translate(2px, 1px); text-shadow: 2px -1px #00ffff, -2px 1px #ff3344; }
+  }
+  .hit-flash { animation: flash-animation 0.25s ease-out; }
+  @keyframes flash-animation {
+    0% { background: #ff3344; }
+    100% { background: #0a051b; }
+  }
+</style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <canvas id="world"></canvas>
+
+  <div class="card" id="card">
+    <div class="emoji-wrapper">
+      <div class="emoji">🎉</div>
+      <div class="emoji">🏆</div>
+      <div class="emoji">🎊</div>
+    </div>
+    <h1>FÉLICITATIONS !</h1>
+    <div class="prize">Tu as gagné...</div>
+    <div class="nothing">ABSOLUMENT RIEN</div>
+    <p>Zéro. Nada. Que dalle. Rien de rien.</p>
+    <p class="extra-p">Bonne journée quand même 😘</p>
+    <button class="btn" id="claimBtn" onclick="claimLot(this)">Réclamer mon lot</button>
+  </div>
+
+  <script>
+    let audioCtx = null;
+    function playAudioTone(freq, type, duration, volume) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq / 2.5, audioCtx.currentTime + duration);
+        gainNode.gain.setValueAtTime(volume, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    const canvas = document.getElementById('world');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    const particles = [];
+    const colors = ['#ffd700', '#ff3344', '#00ffcc', '#ff00ff', '#ffffff'];
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    class Particle {
+      constructor() { this.reset(); this.y = Math.random() * height; }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = -20;
+        this.size = Math.random() * 8 + 6;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 + 2;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 4 - 2;
+        this.isZero = Math.random() > 0.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+        if (this.y > height) this.reset();
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.fillStyle = this.color;
+        if (this.isZero) {
+          ctx.font = `900 ${this.size * 1.5}px 'Space Grotesk'`;
+          ctx.fillText('0', 0, 0);
+        } else {
+          ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+        }
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    function claimLot(btn) {
+      btn.textContent = "...toujours rien 💀";
+      document.body.classList.remove('hit-flash');
+      void document.body.offsetWidth;
+      document.body.classList.add('hit-flash');
+      playAudioTone(290, 'sawtooth', 0.45, 0.15);
+      setTimeout(() => playAudioTone(220, 'sawtooth', 0.6, 0.15), 150);
+      if (navigator.vibrate) navigator.vibrate([80, 50, 200]);
+      const rect = btn.getBoundingClientRect();
+      for (let i = 0; i < 25; i++) {
+        const p = new Particle();
+        p.x = rect.left + rect.width / 2;
+        p.y = rect.top;
+        p.speedY = -(Math.random() * 8 + 4);
+        p.speedX = Math.random() * 10 - 5;
+        p.color = '#ff3344';
+        p.isZero = true;
+        particles.push(p);
+        setTimeout(() => {
+          const index = particles.indexOf(p);
+          if (index > -1) particles.splice(index, 1);
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>

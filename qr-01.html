@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sérieusement ?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Syne:wght@800&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .crt-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 55%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
+    z-index: 11;
+    animation: monitor-flicker 0.15s infinite;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 5;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.9);
+    opacity: 0;
+    animation: power-on 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .emoji {
+    font-size: 100px;
+    margin-bottom: 24px;
+    user-select: none;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+    animation: float 4s ease-in-out infinite alternate;
+    transition: transform 0.1s ease;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    position: relative;
+    animation: text-glitch 4s infinite step-end;
+  }
+
+  h1::before, h1::after {
+    content: "T'as scanné le QR code\nd'un inconnu dans la rue...";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  h1::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  h1::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 0 2px #00fff9;
+    clip: rect(85px, 450px, 140px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: #888;
+    margin-top: 12px;
+    font-weight: 400;
+  }
+
+  .highlight {
+    color: #ff3e3e;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(255, 62, 62, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px dashed rgba(255, 62, 62, 0.3);
+    display: inline-block;
+    animation: pulse 1.5s infinite alternate;
+  }
+
+  .mdr {
+    margin-top: 40px;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    animation: blink 0.8s infinite steps(2);
+  }
+
+  .hint {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #444;
+    animation: pulse 2s infinite alternate;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .shake {
+    animation: screen-shake 0.25s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+  @keyframes monitor-flicker {
+    0% { opacity: 0.98; } 50% { opacity: 1; } 100% { opacity: 0.99; }
+  }
+
+  @keyframes power-on {
+    0% { transform: scaleY(0.01) scaleX(0); opacity: 0; filter: brightness(3); }
+    50% { transform: scaleY(1) scaleX(0.02); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+  }
+
+  @keyframes float {
+    from { transform: translateY(0) rotate(-2deg); }
+    to { transform: translateY(-15px) rotate(2deg); }
+  }
+
+  @keyframes pulse {
+    from { opacity: 0.7; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1.02); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.2; } 50% { opacity: 1; }
+  }
+
+  @keyframes screen-shake {
+    10%, 90% { transform: translate3d(-2px, 0, 0) rotate(-0.5deg); }
+    20%, 80% { transform: translate3d(4px, 0, 0) rotate(1deg); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0) rotate(-1deg); }
+    40%, 60% { transform: translate3d(6px, 0, 0) rotate(1deg); }
+  }
+
+  @keyframes glitch-anim {
+    0% { clip: rect(15px, 9999px, 66px, 0); }
+    10% { clip: rect(34px, 9999px, 55px, 0); }
+    20% { clip: rect(120px, 9999px, 140px, 0); }
+    30% { clip: rect(5px, 9999px, 15px, 0); }
+    40% { clip: rect(85px, 9999px, 90px, 0); }
+    50% { clip: rect(40px, 9999px, 110px, 0); }
+    60% { clip: rect(130px, 9999px, 150px, 0); }
+    70% { clip: rect(20px, 9999px, 60px, 0); }
+    80% { clip: rect(75px, 9999px, 80px, 0); }
+    90% { clip: rect(110px, 9999px, 125px, 0); }
+    100% { clip: rect(50px, 9999px, 95px, 0); }
+  }
+
+  @keyframes glitch-anim2 {
+    0% { clip: rect(45px, 9999px, 50px, 0); }
+    15% { clip: rect(12px, 9999px, 85px, 0); }
+    30% { clip: rect(115px, 9999px, 135px, 0); }
+    45% { clip: rect(2px, 9999px, 25px, 0); }
+    60% { clip: rect(95px, 9999px, 105px, 0); }
+    75% { clip: rect(50px, 9999px, 120px, 0); }
+    90% { clip: rect(140px, 9999px, 145px, 0); }
+    100% { clip: rect(30px, 9999px, 75px, 0); }
+  }
+
+  @keyframes text-glitch {
+    0%, 93%, 100% { text-shadow: none; }
+    94% { text-shadow: 3px 3px 0 #ff00c1, -3px -3px 0 #00fff9; }
+    96% { text-shadow: -3px 3px 0 #ff00c1, 3px -3px 0 #00fff9; }
+    98% { text-shadow: 5px -2px 0 #ff00c1, -5px 2px 0 #00fff9; }
+  }
+</style>
+</head>
+<body>
+  <div class="crt-overlay"></div>
+  <canvas id="noiseBg"></canvas>
+
+  <div class="content-wrapper" id="content">
+    <div class="emoji" id="targetEmoji">🤨</div>
+    <h1>T'as scanné le QR code<br>d'un inconnu dans la rue...</h1>
+    <p>T'as <span class="highlight">vraiment</span> rien de mieux à faire ??</p>
+    <p class="mdr">💀 MDR</p>
+  </div>
+
+  <div class="hint">Touche l'écran pour décoder</div>
+
+  <script>
+    const canvas = document.getElementById('noiseBg');
+    const ctx = canvas.getContext('2d');
+    const content = document.getElementById('content');
+    const emoji = document.getElementById('targetEmoji');
+    let audioCtx = null;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function renderNoise() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      for (let i = 0; i < 150; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = Math.random() * 2 + 1;
+        ctx.fillRect(x, y, size, size);
+      }
+      if (Math.random() > 0.85) {
+        ctx.fillStyle = "rgba(255, 62, 62, 0.15)";
+        ctx.fillRect(0, Math.random() * canvas.height, canvas.width, Math.random() * 4);
+      }
+      requestAnimationFrame(renderNoise);
+    }
+    renderNoise();
+
+    function playGlitchSound() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      osc.type = ['sawtooth', 'square'][Math.floor(Math.random() * 2)];
+      const baseFreq = 80 + Math.random() * 120;
+      osc.frequency.setValueAtTime(baseFreq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 4, audioCtx.currentTime + 0.15);
+      gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.25);
+    }
+
+    function triggerGlitchInteraction() {
+      playGlitchSound();
+      if (navigator.vibrate) navigator.vibrate([40, 30, 60]);
+      content.classList.remove('shake');
+      void content.offsetWidth;
+      content.classList.add('shake');
+      emoji.style.transform = `scale(1.3) rotate(${Math.random() * 40 - 20}deg)`;
+      setTimeout(() => { emoji.style.transform = ''; }, 150);
+      setTimeout(() => { content.classList.remove('shake'); }, 300);
+    }
+
+    document.body.addEventListener('mousedown', triggerGlitchInteraction);
+    document.body.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      triggerGlitchInteraction();
+    }, { passive: false });
+  </script>
+</body>
+</html>
