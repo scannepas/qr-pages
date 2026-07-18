@@ -1,5 +1,5 @@
 // ============================================================
-//  Socle paramoteur – "BON VOL"
+//  Socle paramoteur – "BON VOL" (Version Corrigée)
 //  Imprimable en FDM, face inférieure posée sur le plateau
 // ============================================================
 
@@ -37,8 +37,8 @@ difference() {
     );
 
     // ── Fente rectangulaire sur la face supérieure ───────────
-    // Positionnée au centre du socle ; ne descend pas jusqu'au fond
-    translate([0, 0, hauteur_socle - fente_profondeur])
+    // center=true : le cube est centré → translate au milieu de la fente
+    translate([0, 0, hauteur_socle - (fente_profondeur / 2)])
         cube(
             [fente_longueur, fente_largeur, fente_profondeur + eps],
             center = true
