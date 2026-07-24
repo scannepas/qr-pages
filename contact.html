@@ -6,7 +6,6 @@
   <title>Contact — Bac Sans Corvée</title>
   <meta name="description" content="Contactez Bac Sans Corvée pour un devis gratuit ou toute question sur le nettoyage de poubelles à domicile en Bitcherland.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- og:image : remplacer par l'URL absolue une fois le site en ligne, ex : https://votre-domaine.fr/og-image.png -->
   <meta property="og:image" content="/og-image.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +13,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -28,51 +37,122 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="page-header">
-      <h1>Me contacter</h1>
-      <p>Pour un devis gratuit ou une simple question, n'hésitez pas.</p>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-breadcrumb"><a href="index.html">Accueil</a> / Contact</p>
+      <h1>Me <em>contacter</em></h1>
+      <p>Pour un devis gratuit ou une simple question.</p>
     </div>
+    <svg class="page-hero-wave" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 L0,25 C360,5 720,45 1080,25 C1260,15 1380,30 1440,25 L1440,50 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
 
-    <div class="contact-card">
+  <section class="section">
+    <div class="section-inner">
 
-      <div class="contact-item">
-        <p class="label">Téléphone</p>
-        <p class="contact-phone">[Téléphone à venir]</p>
+      <div class="contact-grid">
+
+        <!-- Carte principale : téléphone -->
+        <div class="contact-card contact-card-main">
+          <p class="contact-label">Téléphone</p>
+          <p class="contact-phone">[Téléphone à venir]</p>
+          <p class="contact-hint">Du lundi au samedi &mdash; réponse rapide</p>
+        </div>
+
+        <!-- Carte secondaire : infos -->
+        <div class="contact-card">
+
+          <div class="contact-row">
+            <div class="contact-row-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M9 2C6.24 2 4 4.24 4 7c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" fill="#C1633B" opacity=".3"/>
+                <circle cx="9" cy="7" r="2" fill="#C1633B"/>
+              </svg>
+            </div>
+            <div class="contact-row-text">
+              <strong>Zone d'intervention</strong>
+              <span>Bitcherland et environs, Moselle &mdash; <a href="zone.html">voir la zone</a></span>
+            </div>
+          </div>
+
+          <!-- E-mail à compléter -->
+          <!--
+          <div class="contact-row">
+            <div class="contact-row-icon">
+              ...icône email...
+            </div>
+            <div class="contact-row-text">
+              <strong>E-mail</strong>
+              <span><a href="mailto:...">...</a></span>
+            </div>
+          </div>
+          -->
+
+          <div class="contact-row">
+            <div class="contact-row-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7" stroke="#C1633B" stroke-width="1.5"/>
+                <path d="M9 5v4l2.5 2.5" stroke="#C1633B" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="contact-row-text">
+              <strong>Devis</strong>
+              <span>Gratuit, sur place, sans engagement</span>
+            </div>
+          </div>
+
+          <!-- Réseaux sociaux à compléter -->
+          <div class="contact-row">
+            <div class="contact-row-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="3" stroke="#C1633B" stroke-width="1.5"/>
+                <rect x="2" y="2" width="14" height="14" rx="4" stroke="#C1633B" stroke-width="1.5"/>
+                <circle cx="13.5" cy="4.5" r="1" fill="#C1633B"/>
+              </svg>
+            </div>
+            <div class="contact-row-text">
+              <strong>Réseaux sociaux</strong>
+              <!-- Liens réseaux sociaux à compléter -->
+              <span style="font-style:italic; color:#8a7d74;">[à compléter prochainement]</span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Adresse e-mail à compléter -->
-      <!--
-      <div class="contact-item">
-        <p class="label">E-mail</p>
-        <p class="value"><a href="mailto:...">...</a></p>
-      </div>
-      -->
-
-      <div class="contact-item">
-        <p class="label">Zone d'intervention</p>
-        <p class="value">Bitcherland et environs (Moselle) &mdash; <a href="zone.html">voir la zone</a></p>
-      </div>
-
-      <div class="contact-item">
-        <p class="label">Réseaux sociaux</p>
-        <!-- Liens réseaux sociaux à compléter -->
-        <p class="value" style="font-style: italic; color: var(--color-text-light);">[à compléter prochainement]</p>
+      <!-- Message rassurant -->
+      <div style="margin-top:1.5rem; background:#fff; border-radius:12px; padding:1.5rem 1.75rem; box-shadow:0 2px 16px rgba(46,42,37,.08); border-left:4px solid #C1633B;">
+        <p style="font-family:Georgia,serif; font-size:1.05rem; font-style:italic; color:#2E2A25; line-height:1.6;">
+          "Un simple appel suffit. Je vous explique le service, on regarde ensemble ce qui correspond à votre situation, et on convient d'un passage gratuit."
+        </p>
       </div>
 
     </div>
-
-    <div class="card">
-      <h2>Devis gratuit, sans engagement</h2>
-      <p>Je me déplace gratuitement pour évaluer vos bacs et vous proposer un tarif adapté. Un coup de fil suffit pour convenir d'un rendez-vous.</p>
-    </div>
-
-  </main>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p></div>
+    </div>
   </footer>
 
 </body>

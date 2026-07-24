@@ -6,7 +6,6 @@
   <title>FAQ — Bac Sans Corvée</title>
   <meta name="description" content="Questions fréquentes sur le service Bac Sans Corvée : présence requise, écologie, disponibilité, paiement et interventions professionnelles.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- og:image : remplacer par l'URL absolue une fois le site en ligne, ex : https://votre-domaine.fr/og-image.png -->
   <meta property="og:image" content="/og-image.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +13,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -28,52 +37,127 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="page-header">
-      <h1>Questions fréquentes</h1>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-breadcrumb"><a href="index.html">Accueil</a> / FAQ</p>
+      <h1>Questions <em>fréquentes</em></h1>
       <p>Tout ce que vous voulez savoir avant de vous lancer.</p>
     </div>
+    <svg class="page-hero-wave" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 L0,25 C360,5 720,45 1080,25 C1260,15 1380,30 1440,25 L1440,50 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
 
-    <div class="faq-list">
+  <section class="section">
+    <div class="section-inner" style="max-width:680px;">
 
-      <div class="faq-item">
-        <p class="question">Dois-je être présent lors du nettoyage ?</p>
-        <p class="answer">Non. Le bac doit simplement être vide et accessible le jour convenu.</p>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
+            Dois-je être présent lors du nettoyage ?
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            Non. Le bac doit simplement être vide et accessible le jour convenu.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Est-ce écologique ?
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            Oui — nettoyage à l'eau et produits respectueux de l'environnement, sans rejet dans les eaux pluviales.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Quand le service est-il disponible ?
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            Toute l'année selon la météo, avec une préférence pour les jours suivant votre collecte habituelle.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Quels moyens de paiement acceptez-vous ?
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            [à définir]
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Intervenez-vous pour les professionnels ou copropriétés ?
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            Sur devis, selon le nombre de bacs et la fréquence souhaitée.
+          </div>
+        </details>
+
       </div>
 
-      <div class="faq-item">
-        <p class="question">Est-ce écologique ?</p>
-        <p class="answer">Oui — nettoyage à l'eau et produits respectueux de l'environnement, sans rejet dans les eaux pluviales.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="question">Quand le service est-il disponible ?</p>
-        <p class="answer">Toute l'année selon la météo, avec une préférence pour les jours suivant votre collecte habituelle.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="question">Quels moyens de paiement acceptez-vous ?</p>
-        <p class="answer">[à définir]</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="question">Intervenez-vous pour les professionnels ou copropriétés ?</p>
-        <p class="answer">Sur devis, selon le nombre de bacs et la fréquence souhaitée.</p>
+      <div style="margin-top:2rem; background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 2px 16px rgba(46,42,37,.08); text-align:center;">
+        <p style="color:#5C5249; margin-bottom:1rem;">Une autre question ? Je vous réponds directement.</p>
+        <a href="contact.html" class="btn">Me contacter
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
 
     </div>
-
-    <div class="card" style="margin-top: 1.75rem;">
-      <h2>Une autre question ?</h2>
-      <p>Cette liste n'est pas exhaustive. <a href="contact.html">Contactez-moi directement</a> et je vous répondrai rapidement.</p>
-    </div>
-
-  </main>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p></div>
+    </div>
   </footer>
 
 </body>

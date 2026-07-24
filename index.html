@@ -14,7 +14,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html" class="active">Accueil</a></li>
@@ -28,47 +38,216 @@
     </div>
   </header>
 
-  <main>
+  <!-- ===================== HÉRO ===================== -->
+  <section class="hero">
+    <div class="hero-inner">
 
-    <section class="hero">
-      <h1>Bac Sans Corvée</h1>
-      <p class="subtitle">Nettoyage de poubelles à domicile &mdash; Moselle</p>
+      <div class="hero-text">
+        <div class="hero-badge">Moselle &mdash; Bitcherland</div>
+        <h1>Bac Sans<br><em>Corvée</em></h1>
+        <p class="hero-sub">Nettoyage de poubelles à domicile</p>
+        <p class="hero-tagline">
+          Fini la corvée du bac qui sent mauvais.<br>
+          Je m'en occupe pour vous, directement chez vous.
+        </p>
+        <a href="contact.html" class="btn">
+          Demander un devis gratuit
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
 
+      <!-- Illustration SVG : bac propre avec eau et étincelles -->
+      <div class="hero-illus" aria-hidden="true">
+        <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- ombre portée -->
+          <ellipse cx="120" cy="288" rx="72" ry="11" fill="rgba(0,0,0,.18)"/>
+
+          <!-- corps du bac -->
+          <rect x="48" y="115" width="144" height="158" rx="10" fill="#C1633B"/>
+          <!-- reflet sur le corps -->
+          <rect x="60" y="125" width="20" height="134" rx="8" fill="rgba(255,255,255,.06)"/>
+
+          <!-- couvercle -->
+          <rect x="34" y="90" width="172" height="30" rx="9" fill="#A5522F"/>
+          <!-- reflet couvercle -->
+          <rect x="50" y="95" width="88" height="9" rx="4" fill="rgba(255,255,255,.09)"/>
+
+          <!-- poignée -->
+          <rect x="98" y="64" width="44" height="30" rx="9" fill="#7a3820"/>
+          <rect x="106" y="70" width="28" height="9" rx="4" fill="rgba(255,255,255,.08)"/>
+
+          <!-- lignes verticales -->
+          <rect x="93"  y="134" width="2" height="126" rx="1" fill="rgba(251,247,242,.32)"/>
+          <rect x="119" y="134" width="2" height="126" rx="1" fill="rgba(251,247,242,.32)"/>
+          <rect x="145" y="134" width="2" height="126" rx="1" fill="rgba(251,247,242,.32)"/>
+
+          <!-- jet d'eau droite -->
+          <path d="M202 155 C220 162, 212 175, 225 184 C210 196, 220 212, 202 222"
+                stroke="#64B5C4" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- gouttes -->
+          <circle cx="228" cy="152" r="4"   fill="#64B5C4" opacity=".7"/>
+          <circle cx="236" cy="170" r="3"   fill="#64B5C4" opacity=".55"/>
+          <circle cx="230" cy="190" r="4.5" fill="#64B5C4" opacity=".7"/>
+          <circle cx="236" cy="210" r="3"   fill="#64B5C4" opacity=".5"/>
+
+          <!-- bulles côté gauche -->
+          <circle cx="28" cy="162" r="6"   stroke="#64B5C4" stroke-width="1.8" fill="none" opacity=".55"/>
+          <circle cx="17" cy="192" r="4.5" stroke="#64B5C4" stroke-width="1.5" fill="none" opacity=".45"/>
+          <circle cx="32" cy="218" r="3.5" stroke="#64B5C4" stroke-width="1.5" fill="none" opacity=".4"/>
+
+          <!-- étincelle 1 (grande, haut droite) -->
+          <path d="M205,82 L207.2,88.8 L214,91 L207.2,93.2 L205,100 L202.8,93.2 L196,91 L202.8,88.8 Z"
+                fill="#E8B84B"/>
+          <!-- étincelle 2 (petite, haut gauche) -->
+          <path d="M26,100 L27.5,104.5 L32,106 L27.5,107.5 L26,112 L24.5,107.5 L20,106 L24.5,104.5 Z"
+                fill="#E8B84B" opacity=".85"/>
+          <!-- étincelle 3 (très petite, milieu droite) -->
+          <path d="M218,138 L219,140.8 L222,141.8 L219,142.8 L218,145.6 L217,142.8 L214,141.8 L217,140.8 Z"
+                fill="#E8B84B" opacity=".75"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- vague de transition -->
+    <svg class="hero-wave" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,72 L0,36 C240,8 480,8 720,36 C960,64 1200,64 1440,36 L1440,72 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
+
+  <!-- ===================== COMMENT ÇA MARCHE ===================== -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">Simple comme bonjour</p>
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <p class="section-intro">Pas de contrat compliqué, pas de paperasse. Juste un service de voisinage, efficace et discret.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>On se contacte</h3>
+            <p>Appelez-moi pour un premier échange rapide. Je me déplace gratuitement pour voir vos bacs.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Je passe chez vous</h3>
+            <p>Le jour convenu, j'interviens directement. Pas besoin d'être présent &mdash; le bac doit juste être vide.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Bac nickel</h3>
+            <p>Lavé, désinfecté, sans odeur. Vous retrouvez un bac propre sans avoir rien eu à faire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== AVANTAGES ===================== -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="section-label">Pourquoi Bac Sans Corvée</p>
+      <h2 class="section-title">Un service pensé pour vous</h2>
+
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#C1633B" opacity=".3"/>
+              <circle cx="12" cy="9" r="2.5" fill="#C1633B"/>
+            </svg>
+          </div>
+          <h3>Service local</h3>
+          <p>Une personne du coin, pas une franchise. Je connais le secteur, j'interviens vite.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3L2 8l10 5 10-5-10-5z" fill="#C1633B" opacity=".3"/>
+              <path d="M2 16l10 5 10-5M2 12l10 5 10-5" stroke="#C1633B" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Discret et flexible</h3>
+          <p>Je m'adapte à vos horaires et à votre organisation. Vous n'avez même pas besoin d'être là.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 21C7 21 5 17 5 13a7 7 0 1 1 14 0c0 4-2 8-2 8" stroke="#C1633B" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 8v5M9 11l3 2 3-2" stroke="#C1633B" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Écologique</h3>
+          <p>Nettoyage à l'eau, produits respectueux, sans rejet dans les eaux pluviales.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLACEHOLDER IMAGE ===================== -->
+  <section class="section">
+    <div class="section-inner" style="text-align:center;">
       <!-- Image principale : remplacer ce bloc par une balise <img> une fois la photo disponible -->
-      <div class="image-placeholder" role="img" aria-label="Photo à venir">
+      <div style="background:#e8d8cc; border:2px dashed #b5a294; border-radius:16px; height:260px; display:flex; align-items:center; justify-content:center; color:#8a7d74; font-size:.88rem; font-style:italic; max-width:680px; margin:0 auto 1.5rem;">
         Photo à venir
       </div>
+      <p style="color:#8a7d74; font-size:.88rem; font-style:italic;">Résultat avant/après — photos à ajouter</p>
+    </div>
+  </section>
 
-      <p class="tagline">
-        Fini la corvée du bac qui sent mauvais.<br>
-        Je m'en occupe pour vous, directement chez vous.
-      </p>
-
-      <a href="contact.html" class="btn">Me contacter</a>
-    </section>
-
-    <section>
-      <div class="card">
-        <h2>Un service de proximité, en Bitcherland</h2>
-        <p>Bac Sans Corvée est un service local, pensé pour les habitants du Bitcherland et des communes voisines. Pas de grande société anonyme — juste quelqu'un du coin qui vient nettoyer vos poubelles pour que vous n'ayez plus à vous en soucier.</p>
-      </div>
-
-      <div class="card">
-        <h2>Comment ça marche ?</h2>
-        <p>Après un passage gratuit pour évaluer votre situation, nous convenons d'un jour et d'une fréquence. Le jour convenu, je passe nettoyer votre bac pendant que vous vaquiez à vos occupations. Vous n'avez même pas besoin d'être présent.</p>
-      </div>
-
-      <div class="card">
-        <h2>Des questions ?</h2>
-        <p>Consultez la <a href="faq.html">FAQ</a> pour les questions fréquentes, ou <a href="contact.html">contactez-moi directement</a> pour discuter de votre situation.</p>
-      </div>
-    </section>
-
-  </main>
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-strip">
+    <h2>Votre premier devis est gratuit</h2>
+    <p>Je me déplace sans engagement pour évaluer votre situation.</p>
+    <a href="contact.html" class="btn btn-ghost">Me contacter
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-nav">
+          <h4>Contact</h4>
+          <ul>
+            <!-- Téléphone à compléter -->
+            <li><a href="contact.html">[Téléphone à venir]</a></li>
+            <!-- Réseaux sociaux à compléter -->
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p>
+      </div>
+    </div>
   </footer>
 
 </body>

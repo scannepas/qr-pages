@@ -6,7 +6,6 @@
   <title>Services — Bac Sans Corvée</title>
   <meta name="description" content="Découvrez les prestations de Bac Sans Corvée : lavage extérieur et intérieur, désinfection et élimination des odeurs de vos poubelles à domicile.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- og:image : remplacer par l'URL absolue une fois le site en ligne, ex : https://votre-domaine.fr/og-image.png -->
   <meta property="og:image" content="/og-image.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +13,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -28,47 +37,129 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="page-header">
-      <h1>Les services</h1>
-      <p>Un nettoyage complet de vos bacs, directement chez vous.</p>
+  <!-- En-tête -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-breadcrumb"><a href="index.html">Accueil</a> / Services</p>
+      <h1>Les <em>services</em></h1>
+      <p>Un nettoyage complet, directement à domicile.</p>
     </div>
+    <svg class="page-hero-wave" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 L0,25 C360,5 720,45 1080,25 C1260,15 1380,30 1440,25 L1440,50 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
 
-    <div class="service-grid">
+  <section class="section">
+    <div class="section-inner">
 
-      <div class="card">
-        <h3>Lavage extérieur</h3>
-        <p>La paroi extérieure du bac est nettoyée en profondeur : élimination des traces, des salissures et des résidus qui s'accumulent au fil des collectes.</p>
+      <div class="service-list">
+
+        <!-- Lavage extérieur -->
+        <div class="service-item">
+          <div class="svc-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+              <!-- bac simplifié -->
+              <rect x="5" y="10" width="16" height="13" rx="2" fill="#C1633B" opacity=".85"/>
+              <rect x="3" y="7" width="20" height="4" rx="1.5" fill="#A5522F"/>
+              <!-- eau / jet -->
+              <path d="M22 11 C26 13 24 17 26 19" stroke="#64B5C4" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Lavage extérieur</h3>
+            <p>La paroi extérieure du bac est nettoyée en profondeur : traces, salissures et résidus accumulés au fil des collectes, éliminés.</p>
+          </div>
+        </div>
+
+        <!-- Lavage intérieur -->
+        <div class="service-item">
+          <div class="svc-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+              <rect x="5" y="7" width="16" height="16" rx="2" fill="#C1633B" opacity=".85"/>
+              <!-- fond intérieur mis en valeur -->
+              <rect x="8" y="10" width="10" height="10" rx="1.5" fill="#A5522F"/>
+              <path d="M10 14 C11 12 15 12 16 14" stroke="#FBF7F2" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Lavage intérieur</h3>
+            <p>L'intérieur du bac est nettoyé soigneusement. Dépôts collés, jus et résidus de déchets sont éliminés jusqu'au fond.</p>
+          </div>
+        </div>
+
+        <!-- Désinfection -->
+        <div class="service-item">
+          <div class="svc-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+              <!-- croix / bouclier sanitaire -->
+              <path d="M13 3 L22 7 L22 14 C22 19 13 23 13 23 C13 23 4 19 4 14 L4 7 Z" fill="#C1633B" opacity=".2" stroke="#C1633B" stroke-width="1.5"/>
+              <rect x="11.5" y="9" width="3" height="8" rx="1" fill="#C1633B"/>
+              <rect x="9" y="11.5" width="8" height="3" rx="1" fill="#C1633B"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Désinfection</h3>
+            <p>Après le lavage, une désinfection élimine les bactéries et germes responsables des mauvaises odeurs et de l'insalubrité.</p>
+          </div>
+        </div>
+
+        <!-- Élimination des odeurs -->
+        <div class="service-item">
+          <div class="svc-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+              <!-- vagues symbolisant l'air frais -->
+              <path d="M7 18 C9 15 11 15 13 18 C15 21 17 21 19 18" stroke="#C1633B" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M7 13 C9 10 11 10 13 13 C15 16 17 16 19 13" stroke="#C1633B" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+              <path d="M7 8  C9 5  11 5  13 8  C15 11 17 11 19 8"  stroke="#C1633B" stroke-width="2" fill="none" stroke-linecap="round" opacity=".3"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Élimination des odeurs</h3>
+            <p>Résultat visible — et olfactif — dès le premier passage. Votre bac retrouve une propreté réelle et ne dégage plus d'odeurs.</p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>Lavage intérieur</h3>
-        <p>L'intérieur du bac est nettoyé soigneusement. Les dépôts collés au fond, les jus et les résidus de déchets sont éliminés.</p>
-      </div>
-
-      <div class="card">
-        <h3>Désinfection</h3>
-        <p>Après le lavage, une désinfection est appliquée pour éliminer les bactéries et les germes responsables des mauvaises odeurs et de l'insalubrité.</p>
-      </div>
-
-      <div class="card">
-        <h3>Élimination des odeurs</h3>
-        <p>Résultat visible (et olfactif) dès le premier passage : votre bac retrouve une propreté satisfaisante et ne dégage plus d'odeurs désagréables.</p>
+      <!-- Placeholder photo service -->
+      <div style="margin-top:2.5rem; background:#e8d8cc; border:2px dashed #b5a294; border-radius:16px; height:220px; display:flex; align-items:center; justify-content:center; color:#8a7d74; font-size:.88rem; font-style:italic;">
+        Photo du service en action — à ajouter
       </div>
 
     </div>
+  </section>
 
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Interventions sur mesure</h2>
-      <p>Vous avez plusieurs bacs, un cas particulier, ou besoin d'une fréquence spécifique ? <a href="contact.html">Contactez-moi</a> pour qu'on en discute ensemble. Je m'adapte à votre situation.</p>
-    </div>
-
-  </main>
+  <section class="cta-strip">
+    <h2>Envie d'un bac impeccable ?</h2>
+    <p>Contactez-moi pour un devis gratuit et sans engagement.</p>
+    <a href="contact.html" class="btn btn-ghost">Me contacter
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p></div>
+    </div>
   </footer>
 
 </body>

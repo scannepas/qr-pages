@@ -6,7 +6,6 @@
   <title>Tarifs — Bac Sans Corvée</title>
   <meta name="description" content="Tarifs de Bac Sans Corvée : devis gratuit sur place pour le nettoyage de vos poubelles à domicile en Bitcherland.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- og:image : remplacer par l'URL absolue une fois le site en ligne, ex : https://votre-domaine.fr/og-image.png -->
   <meta property="og:image" content="/og-image.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +13,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -28,38 +37,105 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="page-header">
-      <h1>Tarifs</h1>
-      <p>Simple, transparent, sans surprise.</p>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-breadcrumb"><a href="index.html">Accueil</a> / Tarifs</p>
+      <h1><em>Tarifs</em></h1>
+      <p>Simple, transparent, sans mauvaise surprise.</p>
     </div>
+    <svg class="page-hero-wave" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 L0,25 C360,5 720,45 1080,25 C1260,15 1380,30 1440,25 L1440,50 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
 
-    <!-- Formule unique — à modifier directement dans ce bloc HTML -->
-    <div class="tarif-box">
-      <p class="tarif-label">Devis gratuit sur place</p>
-      <p>Je me déplace gratuitement pour évaluer votre situation et vous proposer un tarif adapté à votre besoin.</p>
+  <section class="section">
+    <div class="section-inner">
+
+      <!-- Formule unique — modifier directement ce bloc quand les tarifs seront fixés -->
+      <div class="tarif-hero">
+        <div class="tarif-badge">Formule unique</div>
+        <p class="tarif-title">Devis gratuit<br>sur place</p>
+        <p class="tarif-desc">Je me déplace gratuitement pour évaluer vos bacs et vous proposer un tarif adapté à votre situation. Sans engagement.</p>
+      </div>
+
+      <!-- Note de phase de test — à retirer quand les tarifs seront fixés -->
+      <p class="tarif-note">
+        Le service est en phase de test locale. Les tarifs définitifs seront affichés ici dès qu'ils seront arrêtés. En attendant, chaque devis est établi sur place, personnalisé et sans engagement.
+      </p>
+
+      <!-- Ce qui est inclus -->
+      <div style="margin-top:2.5rem;">
+        <p class="section-label">Ce que comprend le devis</p>
+        <h2 class="section-title">Pourquoi un devis sur place ?</h2>
+
+        <div class="cards-grid" style="margin-top:1.25rem;">
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="16" height="14" rx="2" stroke="#C1633B" stroke-width="1.8"/>
+                <path d="M7 9h8M7 13h5" stroke="#C1633B" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Nombre de bacs</h3>
+            <p>Le tarif varie selon combien de bacs vous avez et leur taille (120 L, 240 L, etc.).</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" stroke="#C1633B" stroke-width="1.8"/>
+                <path d="M11 7v4l3 2" stroke="#C1633B" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Fréquence souhaitée</h3>
+            <p>Mensuel, bimensuel ou à la demande — la fréquence influe sur le tarif proposé.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M4 17 C4 17 6 10 11 10 C16 10 18 17 18 17" stroke="#C1633B" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                <circle cx="11" cy="7" r="2.5" stroke="#C1633B" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Accessibilité</h3>
+            <p>L'emplacement du bac et les conditions d'accès peuvent influencer le devis.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <!-- Note de phase de test — à retirer ou modifier quand les tarifs seront fixés -->
-    <p class="tarif-note">
-      Le service est actuellement en phase de test locale. Les tarifs définitifs seront affichés ici dès qu'ils seront arrêtés. En attendant, chaque devis est établi sur place et sans engagement.
-    </p>
-
-    <div class="card" style="margin-top: 2rem;">
-      <h2>Pourquoi un devis sur place ?</h2>
-      <p>Le prix dépend du nombre de bacs, de leur état, de la fréquence souhaitée et de votre accessibilité. Plutôt que d'afficher un tarif forfaitaire qui ne correspondrait pas à votre situation, je préfère vous rencontrer et vous donner un prix juste.</p>
-    </div>
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="contact.html" class="btn">Demander un devis</a>
-    </div>
-
-  </main>
+  <section class="cta-strip">
+    <h2>Demandez votre devis gratuit</h2>
+    <p>Je me déplace sans engagement dans tout le Bitcherland.</p>
+    <a href="contact.html" class="btn btn-ghost">Me contacter
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p></div>
+    </div>
   </footer>
 
 </body>

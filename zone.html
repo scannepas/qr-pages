@@ -6,7 +6,6 @@
   <title>Zone desservie — Bac Sans Corvée</title>
   <meta name="description" content="Bac Sans Corvée intervient en Bitcherland et dans les communes environnantes de Moselle.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- og:image : remplacer par l'URL absolue une fois le site en ligne, ex : https://votre-domaine.fr/og-image.png -->
   <meta property="og:image" content="/og-image.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +13,17 @@
 
   <header class="site-header">
     <div class="nav-wrapper">
-      <a class="nav-brand" href="index.html">Bac Sans <span>Corvée</span></a>
+      <a class="nav-brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#7a3820"/>
+          <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+          <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+          <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        Bac Sans <span>Corvée</span>
+      </a>
       <nav aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -28,39 +37,75 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="page-header">
-      <h1>Zone desservie</h1>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-breadcrumb"><a href="index.html">Accueil</a> / Zone desservie</p>
+      <h1>Zone <em>desservie</em></h1>
       <p>Un service de proximité, au plus près de chez vous.</p>
     </div>
+    <svg class="page-hero-wave" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 L0,25 C360,5 720,45 1080,25 C1260,15 1380,30 1440,25 L1440,50 Z" fill="#FBF7F2"/>
+    </svg>
+  </section>
 
-    <div class="card">
-      <p>Bac Sans Corvée intervient principalement dans le secteur :</p>
-      <p class="zone-highlight">Bitcherland et environs</p>
-      <p>Un doute sur votre commune ? <a href="contact.html">Contactez-moi</a> directement — je vous confirme si j'interviens chez vous.</p>
-    </div>
+  <section class="section">
+    <div class="section-inner">
 
-    <div style="margin-top: 1.5rem;">
-      <h2 style="font-family: Georgia, serif; font-size: 1.2rem; color: var(--color-text); margin-bottom: 0.75rem;">Communes couvertes</h2>
-
-      <!-- liste des villages à compléter -->
-      <div class="village-placeholder">
-        La liste des communes sera complétée prochainement.<br>
-        En attendant, n'hésitez pas à <a href="contact.html">me contacter</a> pour vérifier votre secteur.
+      <div class="zone-card">
+        <p class="section-label">Secteur principal</p>
+        <p class="zone-highlight">Bitcherland<br>et environs</p>
+        <p>Un service local, tenu par quelqu'un du coin. Pas de grande structure — juste une personne qui connaît le territoire.</p>
       </div>
-    </div>
 
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Vous n'êtes pas dans la zone ?</h2>
-      <p>Contactez-moi quand même. Si votre commune est à proximité du secteur, je ferai de mon mieux pour m'organiser. Le service est en développement et la zone peut évoluer.</p>
-    </div>
+      <!-- Placeholder carte visuelle -->
+      <div style="margin:1.5rem 0; background:#e8d8cc; border:2px dashed #b5a294; border-radius:16px; height:240px; display:flex; align-items:center; justify-content:center; color:#8a7d74; font-size:.88rem; font-style:italic;">
+        Carte de la zone — à intégrer
+      </div>
 
-  </main>
+      <div class="zone-card">
+        <h2>Communes couvertes</h2>
+        <!-- liste des villages à compléter -->
+        <div class="village-placeholder">
+          La liste des communes sera ajoutée prochainement.<br>
+          Contactez-moi pour vérifier si j'interviens dans votre secteur.
+        </div>
+      </div>
+
+      <div class="zone-card" style="margin-top:1.25rem;">
+        <h2>Pas sûr d'être dans la zone ?</h2>
+        <p>Contactez-moi directement. Le service est en développement et la zone peut évoluer. Si votre commune est à proximité, je ferai mon possible pour m'organiser.</p>
+        <a href="contact.html" class="btn" style="margin-top:1rem; display:inline-flex;">
+          Me contacter
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="margin-left:.4rem">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
 
   <footer>
-    <p>Bac Sans Corvée &mdash; Nettoyage de poubelles &mdash; Bitcherland, Moselle</p>
-    <!-- Liens réseaux sociaux à compléter -->
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-brand-name">Bac Sans <span>Corvée</span></p>
+          <p>Nettoyage de poubelles à domicile<br>Bitcherland et environs &mdash; Moselle</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="zone.html">Zone desservie</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Bac Sans Corvée &mdash; Moselle</p></div>
+    </div>
   </footer>
 
 </body>
