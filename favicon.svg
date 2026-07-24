@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- poignée -->
+  <rect x="13" y="4" width="6" height="5" rx="1.5" fill="#2E2A25"/>
+  <!-- couvercle -->
+  <rect x="4" y="8" width="24" height="5" rx="2" fill="#A5522F"/>
+  <!-- corps du bac -->
+  <rect x="6" y="12" width="20" height="17" rx="2" fill="#C1633B"/>
+  <!-- lignes verticales -->
+  <line x1="12" y1="16" x2="12" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="16" y1="16" x2="16" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="20" y1="16" x2="20" y2="25" stroke="#FBF7F2" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

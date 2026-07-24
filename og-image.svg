@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- fond crème -->
+  <rect width="1200" height="630" fill="#FBF7F2"/>
+  <!-- bandes décoratives gauche -->
+  <rect x="0" y="0" width="10" height="630" fill="#C1633B"/>
+  <rect x="18" y="0" width="4" height="630" fill="#F3E3D8"/>
+  <!-- bandes décoratives droite -->
+  <rect x="1190" y="0" width="10" height="630" fill="#C1633B"/>
+  <rect x="1178" y="0" width="4" height="630" fill="#F3E3D8"/>
+  <!-- bande terracotta haut -->
+  <rect x="0" y="0" width="1200" height="10" fill="#C1633B"/>
+  <!-- bande terracotta bas -->
+  <rect x="0" y="620" width="1200" height="10" fill="#C1633B"/>
+  <!-- bloc warm beige centré -->
+  <rect x="80" y="140" width="1040" height="350" rx="16" fill="#F3E3D8"/>
+  <!-- icône bac (simplifié) -->
+  <rect x="152" y="215" width="64" height="14" rx="4" fill="#A5522F"/>
+  <rect x="160" y="228" width="48" height="38" rx="4" fill="#C1633B"/>
+  <line x1="176" y1="236" x2="176" y2="258" stroke="#FBF7F2" stroke-width="3" stroke-linecap="round"/>
+  <line x1="184" y1="236" x2="184" y2="258" stroke="#FBF7F2" stroke-width="3" stroke-linecap="round"/>
+  <line x1="192" y1="236" x2="192" y2="258" stroke="#FBF7F2" stroke-width="3" stroke-linecap="round"/>
+  <!-- Titre -->
+  <text x="250" y="268" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="bold" fill="#C1633B">Bac Sans Corvée</text>
+  <!-- Sous-titre -->
+  <text x="250" y="320" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5C5249" letter-spacing="3">NETTOYAGE DE POUBELLES À DOMICILE</text>
+  <!-- Séparateur -->
+  <rect x="250" y="345" width="700" height="2" fill="#C1633B" opacity="0.4"/>
+  <!-- Tagline -->
+  <text x="250" y="400" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-style="italic" fill="#2E2A25">Bitcherland et environs — Moselle</text>
+  <!-- Accroche -->
+  <text x="250" y="445" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#7a6e66">Fini la corvée du bac qui sent mauvais.</text>
+</svg>
